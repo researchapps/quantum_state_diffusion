@@ -12,7 +12,7 @@ basedir = os.path.abspath(os.getcwd())
 output_dir = '/scratch/users/vsochat/IMAGES/singularity/quantumsd/result'
 
 # Variables for each job
-memory = 12000
+memory = 32000
 partition = 'normal'
 
 # Create subdirectories for job, error, and output files
@@ -37,6 +37,6 @@ for seed in seeds:
     filey.writelines("#SBATCH --time=2-00:00\n")
     filey.writelines("#SBATCH --mem=%s\n" %(memory))
     filey.writelines("module load singularity\n")
-    filey.writelines("singularity run --bind %s:/data qsd.img --output_dir /data --duration 10000 --seed %s --save2pkl\n" %(output_dir,seed))
+    filey.writelines("singularity run --bind %s:/data qsd.img --delta_t 5e-3 --output_dir /data --duration 1000 --seed %s --save2pkl\n" %(output_dir,seed))
     filey.close()
     os.system("sbatch -p %s .job/qsd_%s.job" %(partition,seed))
