@@ -13,4 +13,4 @@ IncludeCmd: yes
     mkdir -p /scratch
     mkdir -p /local-scratch
     sudo chmod -R 777 /data
-   echo "To run, ./qsd.img --help"
+    echo "To run, ./qsd.img --help"
